@@ -4,7 +4,7 @@ RSpec.configure do |config|
     if ENV["HEADFUL"] == "true"
       driven_by :selenium_chrome
     else
-      driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+      driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 1400 ]
     end
   end
 end
