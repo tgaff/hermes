@@ -1,3 +1,5 @@
+require "rbconfig" # needed to determine platform for tailwind-css / daisy
+
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -14,8 +16,22 @@ gem "importmap-rails"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
+
+
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails", git: "https://github.com/tgaff/daisyui-rails.git", branch: "get-it-working"
+# gem "tailwindcss-rails", git: "https://github.com/tgaff/daisyui-rails.git", branch: "get-it-working"
+
+platform = RbConfig::CONFIG["host_os"]
+tailwindcss_path = if platform =~ /linux/
+  "vendor/gems/tailwindcss-rails-3.0.0-x86_64-linux"
+elsif platform =~ /darwin/
+  "vendor/gems/tailwindcss-rails-3.0.0-x86_64-darwin"
+else
+  raise "Unsupported platform: #{platform}"
+end
+
+gem "tailwindcss-rails", path: tailwindcss_path
+
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 
