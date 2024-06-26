@@ -1,7 +1,5 @@
-GIT
-  remote: https://github.com/tgaff/daisyui-rails.git
-  revision: 8f528b1a801b8b606370a63b274414e416d2ea52
-  branch: get-it-working
+PATH
+  remote: vendor/gems/tailwindcss-rails-3.0.0-x86_64-darwin
   specs:
     tailwindcss-rails (3.0.0)
       railties (>= 7.0.0)
