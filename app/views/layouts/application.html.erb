@@ -19,7 +19,21 @@
   </head>
 
   <body>
+    <div class="fixed inset-x-0 top-0 flex justify-center mt-4">
+      <% if flash[:notice] %>
+        <div role="alert" class="notice alert alert-info">
+          <p class=""><%= notice %></p>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div role="alert" class="w-1/5 object-center alert alert-warning">
+          <p class=""><%= alert %>foo</p>
+        </div>
+      <% end %>
+    </div>
+
     <main class="container mx-auto mt-28 px-5 flex">
+
       <%= yield %>
     </main>
   </body>
