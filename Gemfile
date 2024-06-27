@@ -53,3 +53,5 @@ group :development do
   gem "web-console"
 end
 gem "view_component", "~> 3.12"
+
+gem "devise", "~> 4.9"
