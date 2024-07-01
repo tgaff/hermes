@@ -1,0 +1,28 @@
+<%= form_with(model: tenant, class: "space-y-6") do |form| %>
+  <% if tenant.errors.any? %>
+    <div id="error_explanation" class="alert alert-error shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        <div>
+          <h3 class="font-bold"><%= pluralize(tenant.errors.count, "error") %> prohibited this tenant from being saved:</h3>
+          <ul class="mt-1">
+            <% tenant.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+      <div class="form-control">
+              <%= form.label :name, class: "label" %>
+                  <%= form.text_field :name, class: "input input-bordered" %>
+                  </div>
+  
+  <div class="form-control mt-6">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
