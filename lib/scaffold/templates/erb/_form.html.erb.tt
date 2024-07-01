@@ -1,43 +1,49 @@
-<%%= form_with(model: <%= model_resource_name %>, class: "contents") do |form| %>
+<%%= form_with(model: <%= model_resource_name %>, class: "space-y-6") do |form| %>
   <%% if <%= singular_table_name %>.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
-
-      <ul>
-        <%% <%= singular_table_name %>.errors.each do |error| %>
-          <li><%%= error.full_message %></li>
-        <%% end %>
-      </ul>
+    <div id="error_explanation" class="alert alert-error shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        <div>
+          <h3 class="font-bold"><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h3>
+          <ul class="mt-1">
+            <%% <%= singular_table_name %>.errors.each do |error| %>
+              <li><%%= error.full_message %></li>
+            <%% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   <%% end %>
 
-<% attributes.each do |attribute| -%>
-  <div class="my-5">
-<% if attribute.password_digest? -%>
-    <%%= form.label :password %>
-    <%%= form.password_field :password, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-</div>
+  <% attributes.each do |attribute| -%>
+    <div class="form-control">
+      <% if attribute.password_digest? -%>
+        <%%= form.label :password, class: "label" %>
+        <%%= form.password_field :password, class: "input input-bordered" %>
+      </div>
 
-<div class="my-5">
-    <%%= form.label :password_confirmation %>
-    <%%= form.password_field :password_confirmation, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-<% elsif attribute.attachments? -%>
-    <%%= form.label :<%= attribute.column_name %> %>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-<% else -%>
-    <%%= form.label :<%= attribute.column_name %> %>
-<% if attribute.field_type == :text_area -%>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-<% elsif attribute.field_type == :check_box -%>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "block mt-2 h-5 w-5" %>
-<% else -%>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-<% end -%>
-<% end -%>
-  </div>
+      <div class="form-control">
+        <%%= form.label :password_confirmation, class: "label" %>
+        <%%= form.password_field :password_confirmation, class: "input input-bordered" %>
+      <% elsif attribute.attachments? -%>
+        <%%= form.label :<%= attribute.column_name %>, class: "label" %>
+        <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true, class: "input input-bordered" %>
+      <% else -%>
+        <%%= form.label :<%= attribute.column_name %>, class: "label" %>
+        <% if attribute.field_type == :text_area -%>
+          <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, rows: 4, class: "textarea textarea-bordered" %>
+        <% elsif attribute.field_type == :check_box -%>
+          <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "checkbox" %>
+        <% else -%>
+          <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "input input-bordered" %>
+        <% end -%>
+      <% end -%>
+    </div>
+  <% end -%>
 
-<% end -%>
-  <div class="inline">
-    <%%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="form-control mt-6">
+    <%%= form.submit class: "btn btn-primary" %>
   </div>
 <%% end %>
