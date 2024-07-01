@@ -1,4 +1,4 @@
-<div id="<%%= dom_id <%= singular_name %> %>">
+<div id="<%%= dom_id <%= singular_name %> %>" class="p-4 bg-base-200 rounded-lg">
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
   <p class="my-5">
     <strong class="block font-medium mb-1"><%= attribute.human_name %>:</strong>

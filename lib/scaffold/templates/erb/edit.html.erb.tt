@@ -1,8 +1,10 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing <%= human_name.downcase %></h1>
+<section class="max-w-2xl mx-auto p-4 bg-neutral rounded-lg shadow-md">
+  <h1 class="font-bold text-4xl mb-6">Editing <%= human_name.downcase %></h1>
 
   <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
 
-  <%%= link_to "Show this <%= human_name.downcase %>", <%= model_resource_name(prefix: "@") %>, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%%= link_to "Back to <%= human_name.pluralize.downcase %>", <%= index_helper(type: :path) %>, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+  <div class="mt-6 space-x-2">
+    <%%= link_to "Show this <%= human_name.downcase %>", <%= model_resource_name(prefix: "@") %>, class: "btn btn-secondary" %>
+    <%%= link_to "Back to <%= human_name.pluralize.downcase %>", <%= index_helper(type: :path) %>, class: "btn btn-secondary" %>
+  </div>
+</section>
