@@ -11,7 +11,6 @@ RSpec.describe "tenants/new", type: :view do
     render
 
     assert_select "form[action=?][method=?]", tenants_path, "post" do
-
       assert_select "input[name=?]", "tenant[name]"
     end
   end

@@ -10,6 +10,7 @@
 class Tenant < ApplicationRecord
   has_many :tenant_memberships
   has_many :users, through: :tenant_memberships
+  has_many :spaces
 
   validates :name, presence: true
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :tenants
+  resources :tenants do
+    resources :spaces
+  end
   devise_for :users
   get "static/about"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

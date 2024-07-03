@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_06_27_062012) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_01_111904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "spaces", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "tenant_id", null: false
+    t.bigint "created_by_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_spaces_on_created_by_id"
+    t.index ["tenant_id"], name: "index_spaces_on_tenant_id"
+  end
 
   create_table "tenant_memberships", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -57,6 +67,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_06_27_062012) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "spaces", "tenants"
+  add_foreign_key "spaces", "users", column: "created_by_id"
   add_foreign_key "tenant_memberships", "tenants"
   add_foreign_key "tenant_memberships", "users"
 end
