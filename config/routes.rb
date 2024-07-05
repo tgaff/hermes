@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :tenants do
     resources :spaces
   end
-  devise_for :users
+
+  resources :spaces, only: [] do
+    resources :channels, only: [ :new, :edit, :update, :index, :create ]
+  end
+  resources :channels, only: [ :show, :destroy ]
+
+
   get "static/about"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

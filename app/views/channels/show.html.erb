@@ -1,0 +1,15 @@
+<section class="max-w-2xl mx-auto p-4 bg-neutral rounded-lg shadow-md">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @channel %>
+
+<!--    <div class="mt-6 flex flex-wrap gap-2">-->
+      <%#= link_to "Edit this channel", edit_channel_path(@channel), class: "btn btn-secondary" %>
+      <%#= link_to "Back to channels", channels_path, class: "btn btn-secondary" %>
+      <%#= button_to "Destroy this channel", @channel, method: :delete, class: "btn btn-error" %>
+<!--    </div>-->
+  </div>
+</section>

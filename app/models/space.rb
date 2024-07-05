@@ -22,6 +22,8 @@
 class Space < ApplicationRecord
   belongs_to :tenant
   belongs_to :created_by, class_name: "User"
+  has_many :channel_groups
+  has_many :channels, through: :channel_groups
 
   validates :name, presence: true
 end

@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_01_111904) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_03_084955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channel_groups", force: :cascade do |t|
+    t.string "name"
+    t.bigint "space_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_channel_groups_on_space_id"
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "channel_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_group_id"], name: "index_channels_on_channel_group_id"
+  end
 
   create_table "spaces", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +83,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_01_111904) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "channel_groups", "spaces"
+  add_foreign_key "channels", "channel_groups"
   add_foreign_key "spaces", "tenants"
   add_foreign_key "spaces", "users", column: "created_by_id"
   add_foreign_key "tenant_memberships", "tenants"

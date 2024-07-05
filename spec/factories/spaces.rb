@@ -24,5 +24,11 @@ FactoryBot.define do
     sequence(:name) { |n| "Space ##{n}" }
     association :tenant
     association :created_by, factory: :user
+
+    trait :with_channel_group do
+      after(:create) do |space|
+        create(:channel_group, space: space)
+      end
+    end
   end
 end
