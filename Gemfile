@@ -53,7 +53,10 @@ group :development do
   gem "web-console"
   gem "annotaterb" # trying this update to the annotate gem
   gem "guard"
-  gem 'guard-rspec', require: false
+  gem "guard-rspec", require: false
+
+  gem "better_errors" # WARNING this should only ever be in development - don't move it
+  gem "binding_of_caller"
 end
 
 gem "view_component", "~> 3.12"
