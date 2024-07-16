@@ -59,7 +59,7 @@ group :development do
   gem "binding_of_caller"
 end
 
-gem "view_component", "~> 3.12"
+gem "view_component", "~> 3.13"
 
 gem "devise", "~> 4.9"
 gem "friendly_id", "~> 5.5.0"
